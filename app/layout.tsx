@@ -3,7 +3,7 @@ import "./globals.css";
 import "./logo.css";
 
 export const metadata: Metadata = {
-  title: "HSL Águas Claras | Aprender também pode ser acolhedor",
+  title: "HSL | Lugar de aprender",
   description: "Inglês, acompanhamento escolar e psicopedagogia com atendimento personalizado para crianças em Águas Claras.",
 };
 
