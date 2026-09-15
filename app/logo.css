@@ -17,7 +17,7 @@ body {
   width: min(100%, 520px);
   height: auto;
   object-fit: contain;
-  transform: translateY(-3.5rem);
+  transform: none;
   position: relative;
   z-index: 1;
 }
@@ -147,29 +147,6 @@ body {
   line-height: 1.45;
 }
 
-.intro-indicators {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0;
-  margin-top: 3rem;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.intro-indicators > div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  min-width: 0;
-  padding: 29px clamp(32px, 2.8vw, 40px);
-  border-right: 1px solid var(--line);
-  text-align: left;
-}
-
-.intro-indicators > div:last-child { border-right: 0; }
-.intro-indicators strong { color: var(--navy); font-family: Manrope, sans-serif; font-size: 1.05rem; }
-.intro-indicators span { color: #647185; font-size: 0.82rem; line-height: 1.4; }
-
 .programs {
   padding-top: 4rem;
   padding-bottom: 2.75rem;
@@ -244,15 +221,6 @@ body {
   font-size: 0.78rem;
   font-weight: 600;
   color: rgba(16, 27, 49, 0.62);
-}
-
-.service-audience {
-  display: block;
-  margin-top: 0.35rem;
-  color: rgba(16, 27, 49, 0.78);
-  font-size: 0.74rem;
-  font-weight: 400;
-  line-height: 1.4;
 }
 
 .service-more {
@@ -936,7 +904,7 @@ body {
   }
 
   .hero-logo > img:first-child {
-    transform: translateY(-1rem);
+    transform: none;
   }
 
   .hero-underline img { bottom: -6px; height: 9px; }
@@ -1100,53 +1068,98 @@ body {
   margin-top: 28px;
 }
 
-.plan-tabs {
+.brand-logo-mark {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  overflow: hidden;
-  border: 0;
-  border-bottom: 1px solid #bfd0da;
-  border-radius: 0;
-  background: transparent;
+  place-items: center;
+  flex: 0 0 50px;
+  width: 50px;
+  height: 50px;
 }
 
+.brand-logo-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.plan-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid #bdd1db;
+  border-radius: 20px 20px 12px 12px;
+  background: #e3f7f8;
+}
+
+.plan-tab-panel.has-adult-prices {
+  grid-template-columns: minmax(250px,.78fr) minmax(0,1.22fr);
+}
+
+.adult-price-options {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 14px;
+  align-content: center;
+  padding-left: clamp(28px,4vw,64px);
+}
+
+.adult-price-option {
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,.24);
+  border-radius: 16px;
+  background: rgba(255,255,255,.07);
+}
+
+.adult-price-option > strong {
+  display: block;
+  margin-bottom: 14px;
+  color: #2ec7e6;
+  font-size: 17px;
+}
+
+.adult-price-option p {
+  margin: 10px 0 0;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.adult-price-option p span,
+.adult-price-option p small {
+  display: block;
+  color: rgba(255,255,255,.75);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.adult-price-option p small { margin-top: 2px; }
+
 .plan-tabs button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-  min-height: 48px;
-  padding: 10px 8px 12px;
+  min-height: 54px;
+  padding: 10px 18px;
   border: 0;
-  border-bottom: 3px solid transparent;
-  border-radius: 0;
+  border-radius: 18px 18px 0 0;
   background: transparent;
-  color: #50647d;
+  color: #ff8614;
   font: inherit;
-  font-size: clamp(16px, 1.25vw, 18px);
-  font-weight: 600;
-  letter-spacing: 0;
-  line-height: 1.35;
-  text-align: center;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  line-height: 1.25;
   cursor: pointer;
-  transition: color 180ms ease, border-color 180ms ease;
+  transition: background-color 180ms ease, box-shadow 180ms ease;
 }
 
 .plan-tabs button:hover {
-  background: transparent;
-  color: #0b3568;
+  background: rgba(255, 255, 255, .45);
 }
 
 .plan-tabs button.is-active {
-  border-bottom-color: #0b3568;
-  background: transparent;
-  box-shadow: none;
-  color: #0b3568;
+  background: #0b3568;
+  box-shadow: 0 1px 0 #0b3568;
 }
-
-.plan-tabs button:nth-child(4) { display: inline-flex; color: #ff8614; }
-.plan-tabs button:nth-child(4).is-active { border-bottom-color: #ff8614; }
-.combo-price-note-standalone { display: none !important; }
 
 .plan-tabs button:focus-visible,
 .plan-tab-panel a:focus-visible,
@@ -1197,6 +1210,7 @@ body {
   margin: 0;
   color: #fff;
   text-align: left;
+  white-space: pre-line;
   font-size: clamp(25px, 2.4vw, 34px);
   font-weight: 800;
   letter-spacing: .055em;
@@ -1215,6 +1229,14 @@ body {
   font-weight: 500;
   letter-spacing: -.025em;
   line-height: 1.35;
+}
+
+.plan-supporting-text {
+  max-width: 390px;
+  margin: 10px 0 0;
+  color: rgba(255,255,255,.74);
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .plan-price {
@@ -1381,20 +1403,35 @@ body {
 
 .school-columns {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 9px 32px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: start;
 }
 
 .school-column {
-  display: contents;
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  min-width: 0;
+  padding: 0 13px;
+}
+
+.school-column:first-child {
+  padding-left: 0;
+}
+
+.school-column:last-child {
+  padding-right: 0;
+}
+
+.school-column + .school-column {
+  border-left: 1px solid rgba(46,199,230,.22);
 }
 
 .school-item {
   display: grid;
   grid-template-columns: 12px minmax(0, 1fr) auto;
   min-height: 21px;
-  align-items: start;
+  align-items: center;
   gap: 5px;
   color: #fff;
   font-size: 11.75px;
@@ -1402,21 +1439,11 @@ body {
   line-height: 1.25;
 }
 
-.school-item.is-last {
-  grid-column: 2;
-  margin-top: 3px;
-  justify-self: start;
-}
-
-.school-item.is-last > span { font-size: 110%; }
-
-
 .school-item > svg:first-child {
   width: 9px;
   height: 9px;
   color: #2ec7e6;
   stroke-width: 2;
-  margin-top: 2px;
 }
 
 .school-item .school-wave {
@@ -1567,18 +1594,17 @@ body {
   }
 
   .plan-tabs {
-    display: flex;
-    overflow-x: auto;
-    scrollbar-width: thin;
-    scroll-snap-type: x proximity;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    overflow: hidden;
   }
 
   .plan-tabs button {
-    flex: 0 0 auto;
-    min-width: 190px;
+    min-width: 0;
     min-height: 56px;
-    white-space: nowrap;
-    scroll-snap-align: start;
+    padding-inline: 5px;
+    font-size: clamp(9px, 2.7vw, 12px);
+    letter-spacing: .02em;
   }
 
   .plan-tab-panel,
@@ -1587,6 +1613,9 @@ body {
     min-height: 0;
     padding: 30px 24px;
   }
+
+  .plan-tab-panel.has-adult-prices { grid-template-columns: 1fr; }
+  .adult-price-options { grid-template-columns: 1fr; margin-top: 28px; padding: 16px 0 0; border-top: 1px solid rgba(255,255,255,.22); }
 
   .plan-main,
   .plan-tab-panel.is-simple .plan-main {
@@ -1747,3 +1776,59 @@ body {
     transition: none;
   }
 }
+
+/* Tablet e desktop estreito: uma faixa contínua entre os layouts aprovados. */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .nav { height: 68px; padding-inline: clamp(28px, 5vw, 64px); }
+  .nav nav, .nav > .button.small { display: none; }
+  .section { padding: clamp(58px, 7vw, 86px) clamp(32px, 6vw, 76px); }
+  .hero { min-height: 0; padding: clamp(54px, 7vw, 86px) clamp(32px, 6vw, 76px) clamp(62px, 8vw, 96px); gap: clamp(28px, 5vw, 64px); }
+  .hero h1 { font-size: clamp(46px, 5.6vw, 66px); }
+  .hero .dots, .hero-logo .hero-decor, .wave { display: none; }
+  .hero-copy { max-width: 720px; }
+  .trust { gap: clamp(18px, 3vw, 32px); }
+  .intro { padding-block: clamp(48px, 6vw, 72px); }
+  .intro .split { gap: clamp(24px, 4vw, 52px); }
+  .intro-journey { display: none; }
+  .programs { padding-block: clamp(52px, 6vw, 76px); }
+  .section-head { gap: 22px; }
+  .program-grid.service-list { margin-top: 30px; gap: 12px; }
+  .service-row-head { min-height: 0; padding: 16px 20px; gap: 18px; }
+  .service-heading { gap: 14px; }
+  .service-more { white-space: nowrap; }
+  .service-detail { grid-template-columns: 1fr; padding: 26px 32px 30px; gap: 24px; }
+  .service-closing { grid-column: 1; }
+  .service-section-cta { margin-top: 38px; }
+  .plans { padding-block: clamp(46px, 6vw, 68px); }
+  .plans-head { padding-right: 80px; }
+  .plans-head h2 { font-size: clamp(43px, 5.2vw, 58px); }
+  .plan-tabs { overflow: visible; }
+  .plan-tabs button { min-width: 0; padding-inline: 10px; font-size: clamp(11px, 1.25vw, 14px); letter-spacing: .045em; }
+  .plan-tab-panel { min-height: 0; padding: clamp(24px, 3.5vw, 38px); grid-template-columns: minmax(230px,.9fr) minmax(0,1.1fr); }
+  .plan-main { padding-right: clamp(24px, 4vw, 52px); }
+  .plan-tab-panel .plan-benefits { padding-left: clamp(24px, 4vw, 52px); }
+  .plan-tab-panel .plan-benefits strong { font-size: clamp(14px, 1.6vw, 17px); }
+  .plan-schools { padding-left: clamp(22px, 3vw, 38px); }
+  .school-columns { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 6px 14px; }
+  .school-column { display: contents; }
+  .school-column + .school-column { border-left: 0; }
+  .school-item.is-long { grid-column: 1 / -1; }
+  .faq { grid-template-columns: 1fr; gap: 34px; }
+  .faq h2 { font-size: clamp(42px, 5.5vw, 58px); }
+  .faq-list details { padding-block: 20px; }
+  .faq-list summary { font-weight: 400; gap: 20px; }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-logo { min-height: 0; padding: 0; justify-content: flex-start; }
+  .hero-logo > img:first-child { width: min(44vw, 330px); transform: none; }
+  .intro .split { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 900px) and (max-width: 1279px) {
+  .hero { grid-template-columns: minmax(0,1.08fr) minmax(280px,.72fr); align-items: center; }
+  .hero-logo { min-height: 0; padding: 0; }
+  .hero-logo > img:first-child { width: min(100%, 400px); transform: none; }
+}
+
