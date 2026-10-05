@@ -1594,17 +1594,27 @@ body {
   }
 
   .plan-tabs {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    overflow: hidden;
+    display: flex;
+    gap: 7px;
+    overflow-x: auto;
+    padding: 6px;
+    border-radius: 18px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
   }
 
+  .plan-tabs::-webkit-scrollbar { display: none; }
+
   .plan-tabs button {
-    min-width: 0;
+    flex: 0 0 42%;
+    min-width: 132px;
     min-height: 56px;
-    padding-inline: 5px;
-    font-size: clamp(9px, 2.7vw, 12px);
+    padding-inline: 12px;
+    border-radius: 14px;
+    font-size: 11px;
     letter-spacing: .02em;
+    scroll-snap-align: center;
   }
 
   .plan-tab-panel,
@@ -1612,6 +1622,7 @@ body {
     grid-template-columns: 1fr;
     min-height: 0;
     padding: 30px 24px;
+    touch-action: pan-y;
   }
 
   .plan-tab-panel.has-adult-prices { grid-template-columns: 1fr; }
@@ -1831,4 +1842,18 @@ body {
   .hero-logo { min-height: 0; padding: 0; }
   .hero-logo > img:first-child { width: min(100%, 400px); transform: none; }
 }
+
+
+/* Keep the hero content above its decorative transition. */
+.hero { padding-bottom: 72px; }
+.programs .section-head { flex-direction: column; align-items: flex-start; gap: 0; }
+.programs .section-head h2 { margin-bottom: 16px; }
+.programs .section-head > p { max-width: 720px; margin: 0; line-height: 1.45; }
+
+/* Folder tabs share a continuous edge with their selected panel. */
+.plans .plan-tabs { position: relative; border-bottom: 0; border-radius: 20px 20px 0 0; padding: 0; }
+.plans .plan-tabs button { border-radius: 18px 18px 0 0; }
+.plans .plan-tabs button.is-active { box-shadow: none; }
+.plans .plan-tab-panel { margin-top: 0; border-radius: 0 0 20px 20px; animation: none; }
+.plan-tagline { margin: 12px 0 0; font-size: 16px; line-height: 1.4; color: rgba(255,255,255,.94); }
 
