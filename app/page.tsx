@@ -68,8 +68,9 @@ export default function Home(){
 
     <section id="inicio" className="hero">
       <div className="dots d1"/><div className="hero-copy" data-reveal>
-        <h1><strong>Você</strong> não precisa procurar mais.<br/><strong>Seu filho</strong> não precisa estudar mais.<br/><em>Vocês encontraram o <strong className="hero-underline">lugar certo<img src="/hsl-chalk-underline.png" alt="" aria-hidden="true"/></strong> para aprender.</em></h1>
-        <div className="actions"><a className="button" href="https://wa.me/5561999783314?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20programas%20da%20HSL%20%C3%81guas%20Claras." target="_blank" rel="noreferrer">Quero conhecer a HSL <span>↗</span></a><a className="text-link" href="#programas">Explorar programas ↓</a></div>
+        <h1 className="hero-question">E se aprender<br/>fosse <em>diferente?</em></h1>
+        <p>Inglês, acompanhamento escolar e psicopedagogia com um plano que faz sentido para você ou seu filho.</p>
+        <div className="actions"><a className="button" href="https://wa.me/5561999783314?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20programas%20da%20HSL%20%C3%81guas%20Claras." target="_blank" rel="noreferrer">Quero descobrir</a><a className="text-link" href="#programas">Explorar programas ↓</a></div>
         <div className="trust"><span><PiUserCircle className="trust-icon"/><b>Atendimento individual</b><small>por padrão</small></span><span><PiPuzzlePiece className="trust-icon icon-puzzle"/><b>Plano personalizado</b><small>para cada fase</small></span><span><PiChatCircleDots className="trust-icon icon-chat"/><b>Comunicação próxima</b><small>com a família</small></span></div>
       </div>
       <div className="hero-art hero-logo"><img src="/logo-hsl.png" alt="Home Sweet Learning"/><img className="hero-decor decor-tape" src="/hsl-user-tape.png" alt="" aria-hidden="true"/><img className="hero-decor decor-sparkle" src="/hsl-user-sparkle.png" alt="" aria-hidden="true"/><img className="hero-decor decor-arrow" src="/hsl-user-arrow.png" alt="" aria-hidden="true"/><img className="hero-decor decor-x" src="/hsl-user-x.png" alt="" aria-hidden="true"/><img className="hero-decor decor-label" src="/hsl-decor-label.png" alt="" aria-hidden="true"/></div>
