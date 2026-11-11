@@ -69,7 +69,8 @@ export default function Home(){
     <section id="inicio" className="hero">
       <div className="dots d1"/><div className="hero-copy" data-reveal>
         <h1 className="hero-question">E se aprender<br/>fosse <em>diferente?</em></h1>
-        <p>Inglês, acompanhamento escolar e psicopedagogia com um plano que faz sentido para você ou seu filho.</p>
+        <p>Inglês para você ir além — e para seu filho descobrir até onde pode chegar.</p>
+        <p>Para crianças e adolescentes, também oferecemos acompanhamento escolar, reforço e psicopedagogia. Cada um no seu momento, todos com espaço para crescer.</p>
         <div className="actions"><a className="button" href="https://wa.me/5561999783314?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20programas%20da%20HSL%20%C3%81guas%20Claras." target="_blank" rel="noreferrer">Quero descobrir</a><a className="text-link" href="#programas">Explorar programas ↓</a></div>
         <div className="trust"><span><PiUserCircle className="trust-icon"/><b>Atendimento individual</b><small>por padrão</small></span><span><PiPuzzlePiece className="trust-icon icon-puzzle"/><b>Plano personalizado</b><small>para cada fase</small></span><span><PiChatCircleDots className="trust-icon icon-chat"/><b>Comunicação próxima</b><small>com a família</small></span></div>
       </div>
