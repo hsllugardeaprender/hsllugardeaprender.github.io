@@ -1873,3 +1873,12 @@ body {
   .hero .trust > span { min-width: 0; border-left: 0; padding-left: 0; }
   .hero .trust > span:last-child { grid-column: 1 / -1; justify-self: center; align-items: center; text-align: center; }
 }
+
+/* Reduce the mobile opening space by ten percent. */
+@media (max-width: 767px) {
+  .hero { padding-top: 63px; }
+  .hero .hero-question { margin-top: 22.5px; }
+}
+@media (max-width: 560px) {
+  .hero { padding-top: 49.5px; }
+}
