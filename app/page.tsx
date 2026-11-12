@@ -41,6 +41,7 @@ const history = [
 
 export default function Home(){
   const [activePlan,setActivePlan]=useState(1);
+  const [mobilePlan,setMobilePlan]=useState<number|null>(0);
   const planSwipeStart=useRef<number|null>(null);
   const [activeProgram,setActiveProgram]=useState<number|null>(null);
   const [contactName,setContactName]=useState("");
@@ -85,6 +86,7 @@ export default function Home(){
     <section id="historia" className="history section"><div className="history-intro" data-reveal><span className="kicker">A NOSSA HISTÓRIA</span><h2><span>Começou antes<br/>de ter nome.</span><em>Cresceu com<br/>cada aluno.</em></h2><p>Há seis anos, seguimos com a mesma promessa: ensinar no tempo do aluno, respeitando diferentes formas de aprender.</p><div className="history-decor" aria-hidden="true"><PiDotsNine/><PiWaveSineLight/><PiCircleThin/><PiPlusLight/></div></div><div className="history-timeline">{history.map(([number,title,text])=><article className="history-item" key={number} data-reveal><span>{number}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></section>
 
     <section id="planos" className="plans section"><div className="plans-shell"><div className="plans-head" data-reveal><span className="kicker">INVESTIMENTO</span><h2>Escolha o ritmo.<br/><em>Nós cuidamos do caminho.</em></h2><p>Ciclos trimestrais reservam vaga e horário. Também há opções mensais flexíveis, conforme disponibilidade.</p><PiSparkleLight className="plans-sparkle" aria-hidden="true"/></div><div className="plan-tabs-wrap" data-reveal>
+      <div className="desktop-price-view">
       <div className="plan-tabs" role="tablist" aria-label="Programas HSL">{plans.map((plan,index)=><button id={`plan-tab-${index}`} key={plan.category} type="button" role="tab" aria-selected={activePlan===index} aria-controls="plan-tab-panel" tabIndex={activePlan===index?0:-1} className={activePlan===index?"is-active":""} onClick={()=>setActivePlan(index)} onKeyDown={event=>{if(event.key==="ArrowLeft"||event.key==="ArrowRight"){event.preventDefault();const direction=event.key==="ArrowRight"?1:-1;const next=(index+direction+plans.length)%plans.length;setActivePlan(next);requestAnimationFrame(()=>document.getElementById(`plan-tab-${next}`)?.focus())}}}>{plan.category}</button>)}</div>
       {(()=>{const plan=plans[activePlan];const benefits="benefits" in plan?plan.benefits:undefined;const schoolColumns="schoolColumns" in plan?plan.schoolColumns:undefined;const adultPrices="adultPrices" in plan?plan.adultPrices:undefined;return <article id="plan-tab-panel" className={`plan-tab-panel ${benefits?"has-benefits":""} ${schoolColumns?"has-schools":""} ${adultPrices?"has-adult-prices":""}`} role="tabpanel" aria-labelledby={`plan-tab-${activePlan}`} key={plan.category} onTouchStart={event=>{planSwipeStart.current=event.touches[0]?.clientX??null}} onTouchEnd={event=>{if(planSwipeStart.current===null)return;const distance=event.changedTouches[0].clientX-planSwipeStart.current;planSwipeStart.current=null;if(Math.abs(distance)<48)return;setActivePlan(current=>distance<0?Math.min(current+1,plans.length-1):Math.max(current-1,0))}}>
         <div className="plan-main"><span className="price-category">{"eyebrow" in plan&&plan.eyebrow?plan.eyebrow:plan.category}</span><h3>{plan.title}</h3>{"tagline" in plan&&plan.tagline?<p className="plan-tagline">{plan.tagline}</p>:null}{"supportingText" in plan&&plan.supportingText?<p className="plan-supporting-text">{plan.supportingText}</p>:null}{adultPrices?null:<><div className="plan-price"><span>A partir de</span><strong>{"price" in plan?plan.price:""}</strong></div>{"priceNote" in plan&&plan.priceNote?<p className="plan-price-note">{plan.priceNote}</p>:null}</>}</div>
@@ -92,6 +94,32 @@ export default function Home(){
         {benefits?<div className="plan-benefits" aria-label="Benefícios do plano">{benefits.map(([Icon,label])=><div key={label}><span className="plan-benefit-icon"><Icon aria-hidden="true"/></span><strong>{label}</strong></div>)}</div>:null}
         {schoolColumns?<div className="plan-schools" aria-label="Referências escolares dos alunos atendidos"><h4>Alunos que acompanhamos estudam em escolas como:</h4><div className="school-columns" role="list">{schoolColumns.map((column,columnIndex)=><div className="school-column" key={columnIndex}>{column.map(school=><div className={`school-item ${school.length>22?"is-long":""}`} role="listitem" key={school}><PiSparkleLight aria-hidden="true"/><span>{school}</span>{school==="Entre outras"?<PiWaveSineLight className="school-wave" aria-hidden="true"/>:null}</div>)}</div>)}</div><p>Instituições citadas como referência escolar dos alunos atendidos, sem vínculo institucional com a HSL.</p></div>:null}
       </article>})()}
+      </div>
+      <div className="mobile-plan-list">
+        {plans.map((plan,index)=>{
+          const open=mobilePlan===index;
+          const benefits="benefits" in plan?plan.benefits:undefined;
+          const schoolColumns="schoolColumns" in plan?plan.schoolColumns:undefined;
+          const adultPrices="adultPrices" in plan?plan.adultPrices:undefined;
+          const labels=["Inglês Kids","Inglês online","Reforço escolar","Psicopedagogia","Combo"];
+          const descriptions=["Individual · Águas Claras","Adultos e adolescentes","Crianças e adolescentes","Aprendizagem e desenvolvimento","Inglês + acompanhamento"];
+          return <article className="mobile-plan-card" data-open={open} key={plan.category}>
+            <h3 className="mobile-plan-heading"><button type="button" className="mobile-plan-toggle" aria-expanded={open} aria-controls={`mobile-plan-details-${index}`} id={`mobile-plan-toggle-${index}`} onClick={()=>setMobilePlan(open?null:index)}>
+              <span className="mobile-plan-radio" aria-hidden="true"/>
+              <span className="mobile-plan-name"><strong>{labels[index]}</strong><small>{descriptions[index]}</small></span>
+              <span className="mobile-plan-cost"><small>A partir de</small><strong>{adultPrices?"R$ 390":"price" in plan?plan.price?.split("/")[0]??"":""}</strong><small>{adultPrices?"por mês":index===3?"por sessão":"por mês"}</small></span>
+            </button></h3>
+            <div className="mobile-plan-details" id={`mobile-plan-details-${index}`} role="region" aria-labelledby={`mobile-plan-toggle-${index}`} hidden={!open}>
+        <div className="plan-main"><span className="price-category">{"eyebrow" in plan&&plan.eyebrow?plan.eyebrow:plan.category}</span><h3>{plan.title}</h3>{"tagline" in plan&&plan.tagline?<p className="plan-tagline">{plan.tagline}</p>:null}{"supportingText" in plan&&plan.supportingText?<p className="plan-supporting-text">{plan.supportingText}</p>:null}{adultPrices?null:<><div className="plan-price"><span>A partir de</span><strong>{"price" in plan?plan.price:""}</strong></div>{"priceNote" in plan&&plan.priceNote?<p className="plan-price-note">{plan.priceNote}</p>:null}</>}</div>
+        {adultPrices?<div className="adult-price-options" aria-label="Valores do inglês online individual para adultos">{adultPrices.map(option=><div className="adult-price-option" key={option.frequency}><strong>{option.frequency}</strong><p><span>Mensal</span>{option.monthly}</p><p><span>Trimestral</span>{option.quarterly}<small>{option.installments}</small></p></div>)}</div>:null}
+        {benefits?<div className="plan-benefits" aria-label="Benefícios do plano">{benefits.map(([Icon,label])=><div key={label}><span className="plan-benefit-icon"><Icon aria-hidden="true"/></span><strong>{label}</strong></div>)}</div>:null}
+        {schoolColumns?<div className="plan-schools" aria-label="Referências escolares dos alunos atendidos"><h4>Alunos que acompanhamos estudam em escolas como:</h4><div className="school-columns" role="list">{schoolColumns.map((column,columnIndex)=><div className="school-column" key={columnIndex}>{column.map(school=><div className={`school-item ${school.length>22?"is-long":""}`} role="listitem" key={school}><PiSparkleLight aria-hidden="true"/><span>{school}</span>{school==="Entre outras"?<PiWaveSineLight className="school-wave" aria-hidden="true"/>:null}</div>)}</div>)}</div><p>Instituições citadas como referência escolar dos alunos atendidos, sem vínculo institucional com a HSL.</p></div>:null}
+      
+            </div>
+          </article>;
+        })}
+      </div>
+
       <a className="button orange plans-general-cta" href="https://wa.me/5561999783314?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20programas%20da%20HSL%20%C3%81guas%20Claras." target="_blank" rel="noreferrer">Quero conversar sobre os programas ↗</a>
     </div><p className="fine"><strong>Valores por aluno. Atendimento individual.</strong> Matrícula única de R$ 150. Plano mensal flexível disponível sob consulta.</p></div></section>
 
