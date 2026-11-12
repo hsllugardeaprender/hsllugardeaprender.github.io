@@ -87,7 +87,7 @@ export default function Home(){
             <h3 className="mobile-plan-heading"><button type="button" className="mobile-plan-toggle" aria-expanded={open} aria-controls={`mobile-plan-details-${index}`} id={`mobile-plan-toggle-${index}`} onClick={()=>setMobilePlan(open?null:index)}>
               <span className="mobile-plan-radio" aria-hidden="true"/>
               <span className="mobile-plan-name"><strong>{labels[index]}</strong><small>{descriptions[index]}</small></span>
-              <span className="mobile-plan-cost"><small>A partir de</small><strong>{adultPrices?"R$ 390":"price" in plan?plan.price?.split("/")[0]??"":""}</strong><small>{adultPrices?"por mês":index===3?"por sessão":"por mês"}</small></span>
+              <span className="mobile-plan-cost"><small>A partir de</small><strong>{adultPrices?"R$ 390":"price" in plan?plan.price?.split("/")[0]??"":""}</strong>{index===3?<small>por sessão</small>:null}</span>
             </button></h3>
             <div className="mobile-plan-details" id={`mobile-plan-details-${index}`} role="region" aria-labelledby={`mobile-plan-toggle-${index}`} hidden={!open}>
         <div className="plan-main"><span className="price-category">{"eyebrow" in plan&&plan.eyebrow?plan.eyebrow:plan.category}</span><h3>{plan.title}</h3>{"tagline" in plan&&plan.tagline?<p className="plan-tagline">{plan.tagline}</p>:null}{"supportingText" in plan&&plan.supportingText?<p className="plan-supporting-text">{plan.supportingText}</p>:null}{adultPrices?null:<><div className="plan-price"><span>A partir de</span><strong>{"price" in plan?plan.price:""}</strong></div>{"priceNote" in plan&&plan.priceNote?<p className="plan-price-note">{plan.priceNote}</p>:null}</>}</div>
@@ -101,7 +101,7 @@ export default function Home(){
       </div>
 
       <a className="button orange plans-general-cta" href="https://wa.me/5561999783314?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20programas%20da%20HSL%20%C3%81guas%20Claras." target="_blank" rel="noreferrer">Quero conversar sobre os programas ↗</a>
-    </div><p className="fine"><strong>Valores por aluno. Atendimento individual.</strong> Matrícula única de R$ 150. Plano mensal flexível disponível sob consulta.</p></div></section>
+    </div><p className="fine"><strong>Valores por aluno. Atendimento individual.</strong><span>Matrícula única de R$ 150.</span><span>Plano mensal flexível disponível sob consulta.</span></p></div></section>
 
     <section className="faq section"><div data-reveal><span className="kicker">DÚVIDAS FREQUENTES</span><h2>Antes de começar,<br/><em>vale saber.</em></h2></div><div className="faq-list">{faqs.map((x,i)=><details key={i} data-reveal><summary>{x[0]}<span aria-hidden="true">+</span></summary><p>{x[1]}</p></details>)}</div></section>
 

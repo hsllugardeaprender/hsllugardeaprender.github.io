@@ -1976,3 +1976,6 @@ body {
  .footer-bottom { align-items:center; font-size:11px; gap:12px; }
  .mobile-plan-name small { line-height:1.5; }
 }
+
+/* Keep each pricing note on its own centered line. */
+.plans .fine > strong, .plans .fine > span { display:block; text-align:center; }
