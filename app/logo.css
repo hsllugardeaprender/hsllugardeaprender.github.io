@@ -1905,3 +1905,8 @@ body {
   .programs .service-more b { font-size: 22px; }
   .programs .service-section-cta strong { font-weight: 800; }
 }
+
+/* Mobile programs go directly from the heading to the service cards. */
+@media (max-width: 767px) {
+  .programs .section-head > p { display: none; }
+}
